@@ -33,6 +33,7 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
+          <ThemeToggle />
           <Button variant="hero" size="sm" asChild>
             <a href="#contact">Get In Touch</a>
           </Button>
