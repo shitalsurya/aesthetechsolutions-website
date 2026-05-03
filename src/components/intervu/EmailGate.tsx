@@ -29,7 +29,7 @@ const EmailGate = ({ open, onSubmit, loading }: Props) => {
       return;
     }
     setErr("");
-    onSubmit(r.data);
+    onSubmit({ name: r.data.name, email: r.data.email! });
   };
 
   return (
