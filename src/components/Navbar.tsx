@@ -1,15 +1,16 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Process", href: "#process" },
-  { label: "Portfolio", href: "#portfolio" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "/#about" },
+  { label: "Services", href: "/#services" },
+  { label: "Process", href: "/#process" },
+  { label: "Portfolio", href: "/#portfolio" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 const Navbar = () => {
@@ -18,9 +19,9 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
-        <a href="#" className="font-display text-xl font-bold tracking-tight">
+        <Link to="/" className="font-display text-xl font-bold tracking-tight">
           <span className="gradient-text">Aesthe</span>Tech
-        </a>
+        </Link>
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-8">
@@ -33,9 +34,15 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
+          <Link
+            to="/intervu"
+            className="inline-flex items-center gap-1.5 text-sm font-medium px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/30 hover:bg-primary/20 transition-colors"
+          >
+            <Sparkles className="h-3.5 w-3.5" /> Intervu Challenge
+          </Link>
           <ThemeToggle />
           <Button variant="hero" size="sm" asChild>
-            <a href="#contact">Get In Touch</a>
+            <a href="/#contact">Get In Touch</a>
           </Button>
         </div>
 
@@ -68,8 +75,15 @@ const Navbar = () => {
                   {link.label}
                 </a>
               ))}
+              <Link
+                to="/intervu"
+                onClick={() => setIsOpen(false)}
+                className="inline-flex items-center gap-1.5 text-sm font-medium px-3 py-1.5 rounded-full bg-primary/10 text-primary border border-primary/30 w-fit"
+              >
+                <Sparkles className="h-3.5 w-3.5" /> Intervu Challenge
+              </Link>
               <Button variant="hero" size="sm" asChild>
-                <a href="#contact" onClick={() => setIsOpen(false)}>Get In Touch</a>
+                <a href="/#contact" onClick={() => setIsOpen(false)}>Get In Touch</a>
               </Button>
             </div>
           </motion.div>
