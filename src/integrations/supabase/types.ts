@@ -14,7 +14,66 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      intervu_attempts: {
+        Row: {
+          aptitude_score: number | null
+          aptitude_total: number | null
+          created_at: string
+          email: string
+          hr_answer: string | null
+          hr_feedback: Json | null
+          hr_question: string | null
+          hr_score: number | null
+          id: string
+          logic_score: number | null
+          logic_total: number | null
+          name: string | null
+          stream: string | null
+          strengths: string[] | null
+          tips: string[] | null
+          total_score: number
+          weaknesses: string[] | null
+        }
+        Insert: {
+          aptitude_score?: number | null
+          aptitude_total?: number | null
+          created_at?: string
+          email: string
+          hr_answer?: string | null
+          hr_feedback?: Json | null
+          hr_question?: string | null
+          hr_score?: number | null
+          id?: string
+          logic_score?: number | null
+          logic_total?: number | null
+          name?: string | null
+          stream?: string | null
+          strengths?: string[] | null
+          tips?: string[] | null
+          total_score?: number
+          weaknesses?: string[] | null
+        }
+        Update: {
+          aptitude_score?: number | null
+          aptitude_total?: number | null
+          created_at?: string
+          email?: string
+          hr_answer?: string | null
+          hr_feedback?: Json | null
+          hr_question?: string | null
+          hr_score?: number | null
+          id?: string
+          logic_score?: number | null
+          logic_total?: number | null
+          name?: string | null
+          stream?: string | null
+          strengths?: string[] | null
+          tips?: string[] | null
+          total_score?: number
+          weaknesses?: string[] | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
