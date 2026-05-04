@@ -1,6 +1,4 @@
 import { useState } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import IntervuHero from "@/components/intervu/IntervuHero";
 import ChallengeFlow, { ChallengeResult } from "@/components/intervu/ChallengeFlow";
 import Results, { ScoredResult } from "@/components/intervu/Results";
@@ -143,8 +141,7 @@ const Intervu = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
-      <main className="pt-16">
+      <main>
         {phase === "hero" && <IntervuHero onStart={() => setPhase("stream")} />}
 
         {phase === "stream" && (
@@ -186,7 +183,6 @@ const Intervu = () => {
 
         <EmailGate open={emailOpen} onSubmit={unlock} loading={submitting} />
       </main>
-      <Footer />
     </div>
   );
 };
