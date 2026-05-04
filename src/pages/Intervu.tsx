@@ -183,7 +183,6 @@ const Intervu = () => {
 
         <EmailGate open={emailOpen} onSubmit={unlock} loading={submitting} />
       </main>
-      <Footer />
     </div>
   );
 };
