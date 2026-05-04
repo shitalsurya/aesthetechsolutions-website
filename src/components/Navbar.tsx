@@ -34,12 +34,12 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
-          <Link
+        {/*  <Link
             to="/intervu"
             className="inline-flex items-center gap-1.5 text-sm font-medium px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/30 hover:bg-primary/20 transition-colors"
           >
             <Sparkles className="h-3.5 w-3.5" /> Intervu Challenge
-          </Link>
+          </Link>*/}
           <ThemeToggle />
           <Button variant="hero" size="sm" asChild>
             <a href="/#contact">Get In Touch</a>
