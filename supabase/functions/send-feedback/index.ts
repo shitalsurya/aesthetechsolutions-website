@@ -90,10 +90,12 @@ async function sendWithRetry(p: Payload, maxAttempts = 3): Promise<number> {
     const client = new SMTPClient({
       connection: {
         hostname: "smtp.gmail.com",
-        port: 587,
-        tls: false,
+        port: 465,
+        tls: true,
         auth: { username: user, password: pass.replace(/\s+/g, "") },
       },
+      pool: false,
+      debug: { log: false, allowUnsecure: false, encodeLB: false, noStartTLS: false },
     });
     try {
       await client.send({
