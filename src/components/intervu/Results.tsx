@@ -25,12 +25,12 @@ interface Props {
 }
 
 const Results = ({ result, blurred, onUnlock, onRetry }: Props) => {
-  const shareText = `I scored ${result.total_score}/100 on the Intervu Challenge. Can you beat me? https://aesthetechsolutions.lovable.app/intervu`;
+  const shareText = `I scored ${result.total_score}/100 on the Intervu Challenge. Can you beat me? https://aesthetechsolutions.co.in/intervu`;
 
   const share = (where: "linkedin" | "whatsapp" | "copy") => {
     if (where === "linkedin") {
       window.open(
-        `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent("https://aesthetechsolutions.lovable.app/intervu")}&summary=${encodeURIComponent(shareText)}`,
+        `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent("https://aesthetechsolutions.co.in/intervu")}&summary=${encodeURIComponent(shareText)}`,
         "_blank"
       );
     } else if (where === "whatsapp") {
