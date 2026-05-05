@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      feedback_logs: {
+        Row: {
+          attempts: number
+          created_at: string
+          email: string
+          error_message: string | null
+          feedback: string | null
+          id: string
+          name: string | null
+          score: number | null
+          status: string
+        }
+        Insert: {
+          attempts?: number
+          created_at?: string
+          email: string
+          error_message?: string | null
+          feedback?: string | null
+          id?: string
+          name?: string | null
+          score?: number | null
+          status?: string
+        }
+        Update: {
+          attempts?: number
+          created_at?: string
+          email?: string
+          error_message?: string | null
+          feedback?: string | null
+          id?: string
+          name?: string | null
+          score?: number | null
+          status?: string
+        }
+        Relationships: []
+      }
       intervu_attempts: {
         Row: {
           aptitude_score: number | null
