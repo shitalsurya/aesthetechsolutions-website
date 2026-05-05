@@ -124,6 +124,37 @@ const Intervu = () => {
       setScored({ ...finalScored, percentile: pct });
       setEmailOpen(false);
       toast.success("Feedback unlocked!");
+
+      // Fire-and-forget: email the candidate their feedback
+      const feedbackText = [
+        `Overall Score: ${total}/100`,
+        `HR: ${hr.score}/100 · Aptitude: ${apt.correct}/${apt.total} · Logic: ${logicCorrect}/1`,
+        "",
+        "Strengths:",
+        ...hr.strengths.map((s) => `• ${s}`),
+        "",
+        "Areas to Improve:",
+        ...hr.weaknesses.map((s) => `• ${s}`),
+      ].join("\n");
+
+      supabase.functions
+        .invoke("send-feedback", {
+          body: {
+            name: info.name,
+            email: info.email,
+            score: total,
+            feedback: feedbackText,
+            suggestions: hr.tips,
+          },
+        })
+        .then(({ error: mailErr }) => {
+          if (mailErr) {
+            console.error("Feedback email failed:", mailErr);
+            toast.error("Couldn't email your feedback, but it's visible above.");
+          } else {
+            toast.success(`Feedback emailed to ${info.email}`);
+          }
+        });
     } catch (e) {
       const msg = e instanceof Error ? e.message : "Could not unlock feedback";
       toast.error(msg);
