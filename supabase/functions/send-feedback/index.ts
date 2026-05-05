@@ -87,31 +87,28 @@ async function sendWithRetry(p: Payload, maxAttempts = 3): Promise<number> {
 
   let lastErr: unknown;
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-    const client = new SMTPClient({
-      connection: {
-        hostname: "smtp.gmail.com",
-        port: 465,
-        tls: true,
-        auth: { username: user, password: pass.replace(/\s+/g, "") },
-      },
-      pool: false,
-      debug: { log: false, allowUnsecure: false, encodeLB: false, noStartTLS: false },
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: { user, pass: pass.replace(/\s+/g, "") },
     });
     try {
-      await client.send({
-        from: "Aesthetech Solutions <support@aesthetechsolutions.co.in>",
+      await transporter.sendMail({
+        from: '"Aesthetech Solutions" <support@aesthetechsolutions.co.in>',
         replyTo: "support@aesthetechsolutions.co.in",
         to: p.email,
         bcc: "contact2aesthetechsolutions@gmail.com",
         subject: `Your Interview Feedback — Score ${p.score}/100`,
-        content: `Hi ${p.name || "Candidate"},\n\nYour interview score: ${p.score}/100\n\n${p.feedback}\n\n— Aesthetech Solutions`,
+        text: `Hi ${p.name || "Candidate"},\n\nYour interview score: ${p.score}/100\n\n${p.feedback}\n\n— Aesthetech Solutions`,
         html: buildHtml(p),
       });
-      await client.close();
+      try { transporter.close(); } catch (_) { /* ignore */ }
       return attempt;
     } catch (e) {
       lastErr = e;
-      try { await client.close(); } catch (_) { /* ignore */ }
+      try { transporter.close(); } catch (_) { /* ignore */ }
+      console.error(`SMTP attempt ${attempt} failed:`, e instanceof Error ? e.message : String(e));
       if (attempt < maxAttempts) {
         await new Promise((r) => setTimeout(r, 500 * attempt));
       }
