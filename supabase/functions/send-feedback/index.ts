@@ -1,5 +1,5 @@
-// Send candidate interview feedback via Gmail SMTP
-import { SMTPClient } from "https://deno.land/x/denomailer@1.6.0/mod.ts";
+// Send candidate interview feedback via Gmail SMTP (nodemailer)
+import nodemailer from "npm:nodemailer@6.9.14";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 
 const corsHeaders = {
