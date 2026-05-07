@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Compass, Sparkles, Map, Target, Trophy, Zap, Shield, Users, ChevronRight, Check, Star, ArrowRight, BookOpen, Brain, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -43,6 +44,19 @@ const faqs = [
 ];
 
 const Landing = () => {
+  useEffect(() => {
+    document.title = "MindMap Career Compass — Navigate Your Future with Clarity";
+    const setMeta = (name: string, content: string) => {
+      let m = document.querySelector(`meta[name="${name}"]`);
+      if (!m) { m = document.createElement("meta"); m.setAttribute("name", name); document.head.appendChild(m); }
+      m.setAttribute("content", content);
+    };
+    setMeta("description", "AI-powered career guidance, personalized roadmaps, and interview prep for students and professionals. By AesthTech Solutions.");
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) { canonical = document.createElement("link"); canonical.setAttribute("rel", "canonical"); document.head.appendChild(canonical); }
+    canonical.setAttribute("href", "https://aesthetechsolutions.co.in/MindMapCareerCompass");
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <MMCCNav />
