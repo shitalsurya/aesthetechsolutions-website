@@ -10,6 +10,7 @@ const navLinks = [
   { label: "Services", href: "/#services" },
   { label: "Process", href: "/#process" },
   { label: "Portfolio", href: "/#portfolio" },
+  { label: "MindMap", href: "/MindMapCareerCompass" },
   { label: "Contact", href: "/#contact" },
 ];
 

@@ -14,6 +14,69 @@ export type Database = {
   }
   public: {
     Tables: {
+      career_assessments: {
+        Row: {
+          answers: Json
+          created_at: string
+          id: string
+          recommended_career: string | null
+          recommended_stream: string | null
+          score: Json | null
+          user_id: string
+        }
+        Insert: {
+          answers?: Json
+          created_at?: string
+          id?: string
+          recommended_career?: string | null
+          recommended_stream?: string | null
+          score?: Json | null
+          user_id: string
+        }
+        Update: {
+          answers?: Json
+          created_at?: string
+          id?: string
+          recommended_career?: string | null
+          recommended_stream?: string | null
+          score?: Json | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      email_logs: {
+        Row: {
+          created_at: string
+          error: string | null
+          id: string
+          meta: Json | null
+          status: string
+          subject: string | null
+          template: string
+          to_email: string
+        }
+        Insert: {
+          created_at?: string
+          error?: string | null
+          id?: string
+          meta?: Json | null
+          status?: string
+          subject?: string | null
+          template: string
+          to_email: string
+        }
+        Update: {
+          created_at?: string
+          error?: string | null
+          id?: string
+          meta?: Json | null
+          status?: string
+          subject?: string | null
+          template?: string
+          to_email?: string
+        }
+        Relationships: []
+      }
       feedback_logs: {
         Row: {
           attempts: number
@@ -47,6 +110,42 @@ export type Database = {
           name?: string | null
           score?: number | null
           status?: string
+        }
+        Relationships: []
+      }
+      interview_progress: {
+        Row: {
+          challenge_slug: string
+          completed: boolean
+          created_at: string
+          details: Json | null
+          difficulty: string | null
+          id: string
+          score: number
+          total: number
+          user_id: string
+        }
+        Insert: {
+          challenge_slug: string
+          completed?: boolean
+          created_at?: string
+          details?: Json | null
+          difficulty?: string | null
+          id?: string
+          score?: number
+          total?: number
+          user_id: string
+        }
+        Update: {
+          challenge_slug?: string
+          completed?: boolean
+          created_at?: string
+          details?: Json | null
+          difficulty?: string | null
+          id?: string
+          score?: number
+          total?: number
+          user_id?: string
         }
         Relationships: []
       }
@@ -110,15 +209,177 @@ export type Database = {
         }
         Relationships: []
       }
+      payments: {
+        Row: {
+          amount: number
+          created_at: string
+          currency: string
+          email: string | null
+          id: string
+          plan: string | null
+          razorpay_order_id: string | null
+          razorpay_payment_id: string | null
+          razorpay_signature: string | null
+          status: string
+          user_id: string | null
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          currency?: string
+          email?: string | null
+          id?: string
+          plan?: string | null
+          razorpay_order_id?: string | null
+          razorpay_payment_id?: string | null
+          razorpay_signature?: string | null
+          status?: string
+          user_id?: string | null
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          currency?: string
+          email?: string | null
+          id?: string
+          plan?: string | null
+          razorpay_order_id?: string | null
+          razorpay_payment_id?: string | null
+          razorpay_signature?: string | null
+          status?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          plan: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          plan?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          plan?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      saved_roadmaps: {
+        Row: {
+          career: string | null
+          created_at: string
+          id: string
+          steps: Json
+          title: string
+          user_id: string
+        }
+        Insert: {
+          career?: string | null
+          created_at?: string
+          id?: string
+          steps?: Json
+          title: string
+          user_id: string
+        }
+        Update: {
+          career?: string | null
+          created_at?: string
+          id?: string
+          steps?: Json
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      subscriptions: {
+        Row: {
+          created_at: string
+          current_period_end: string | null
+          id: string
+          plan: string
+          razorpay_subscription_id: string | null
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          current_period_end?: string | null
+          id?: string
+          plan: string
+          razorpay_subscription_id?: string | null
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          current_period_end?: string | null
+          id?: string
+          plan?: string
+          razorpay_subscription_id?: string | null
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -245,6 +506,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+    },
   },
 } as const
